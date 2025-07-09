@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trd Minecraft服务器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --mc-green: #4CAF50;
+            --mc-dark-green: #2E7D32;
+            --mc-darker: #1B5E20;
+            --mc-black: #121212;
+            --mc-gray: #333;
+            --mc-light: #f5f5f5;
+            --mc-accent: #FFC107;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--mc-black), var(--mc-darker));
+            color: var(--mc-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            background-attachment: fixed;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--mc-accent);
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #fff;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--mc-green);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--mc-green), var(--mc-accent));
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            color: var(--mc-accent);
+        }
+        
+        .card-title {
+            font-size: 2rem;
+            color: var(--mc-green);
+        }
+        
+        .features-list {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .features-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--mc-green);
+            font-weight: bold;
+        }
+        
+        .highlight {
+            color: var(--mc-accent);
+            font-weight: bold;
+        }
+        
+        .server-info {
+            background: rgba(46, 125, 50, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            border: 2px solid var(--mc-green);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--mc-accent);
+        }
+        
+        .server-address {
+            background: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin: 15px 0;
+            border: 2px solid var(--mc-green);
+            color: var(--mc-accent);
+            font-family: monospace;
+        }
+        
+        .qq-group {
+            font-size: 1.8rem;
+            margin: 25px 0;
+            color: var(--mc-accent);
+        }
+        
+        .qq-icon {
+            color: #12b7f5;
+            margin-right: 10px;
+        }
+        
+        .explanation {
+            background: rgba(30, 30, 30, 0.7);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid var(--mc-green);
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 30px;
+            border-top: 1px solid var(--mc-green);
+            font-size: 1.1rem;
+        }
+        
+        .join-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--mc-green), var(--mc-darker));
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .join-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.6);
+        }
+        
+        .minecraft-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .card-title {
+                font-size: 1.8rem;
+            }
+            
+            .server-address {
+                font-size: 1.4rem;
+                padding: 10px 20px;
+            }
+            
+            .qq-group {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-cubes minecraft-icon"></i>Trd373 Minecraft服务器</h1>
+            <p class="subtitle">我们同时运营基岩版和Java版两大服务器，为您带来超丰富的游戏体验！</p>
+        </header>
+        
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fab fa-java card-icon"></i>
+                    <h2 class="card-title">Minecraft Java版服务器</h2>
+                </div>
+                <ul class="features-list">
+                    <li><span class="highlight">版本支持：</span>支持1.10至1.21.8版本客户端进入</li>
+                    <li><span class="highlight">准入要求：</span>需使用正版账号登录，守护纯净游戏环境</li>
+                    <li><span class="highlight">特色玩法：</span></li>
+                    <li>🏡 专属地皮系统：每位玩家都能拥有自己的专属地皮</li>
+                    <li>🛠️ 创世神插件（WE）：在地皮内可自由使用创世神插件，无论是搭建宏伟建筑，还是改造大规模地形，都能轻松拿捏！</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-mobile-alt card-icon"></i>
+                    <h2 class="card-title">Minecraft 基岩版服务器</h2>
+                </div>
+                <ul class="features-list">
+                    <li><span class="highlight">加入方式：</span>采用白名单机制，需加入官方QQ群申请</li>
+                    <li><span class="highlight">玩法特色：</span></li>
+                    <li>🏡 同样拥有个性化地皮系统</li>
+                    <li>🚀 配备传送领地插件，管理、访问领地超方便！</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="server-info">
+            <h3 class="info-title">服务器信息</h3>
+            <p>服务器地址：</p>
+            <div class="server-address pulse">trd373.xyz</div>
+            
+            <p>官方QQ群：</p>
+            <div class="qq-group">
+                <i class="fab fa-qq qq-icon"></i>1049034745
+            </div>
+            
+            <!-- 修改这里：将按钮文本改为"立即加入群聊"并指向QQ群链接 -->
+            <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=yroGt_2AWu6HIEGiLb1m7hIftD9nEeet&authKey=w1NhJFgw663viD2DsuMgJqfZDpy3z7XhjoGfbVe4vGpBSrkYm7RsVKctuArVWfmK&noverify=0&group_code=1049034745" class="join-button">
+                <i class="fab fa-qq"></i> 立即加入群聊
+            </a>
+            
+            <div class="explanation">
+                <p>采用正版账号和白名单机制，是为了打造友好、和谐的游戏氛围，远离恶意破坏行为！快来加入我们，尽情享受游戏乐趣吧~ 🎉</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Trd373 Minecraft服务器 | 打造最纯净的Minecraft游戏体验</p>
+        </footer>
+    </div>
+
+    <script>
+        // 简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // 加入按钮动画
+            const joinButton = document.querySelector('.join-button');
+            if(joinButton) {
+                joinButton.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                joinButton.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
